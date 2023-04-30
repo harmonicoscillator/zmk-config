@@ -9,7 +9,7 @@ manifest:
 #      remote: caksoylar
 #      revision: caksoylar/zen-unified
       remote: zmkfirmware
-      revisoin: main
+      revision: main
       import: app/west.yml
   self:
     path: config
