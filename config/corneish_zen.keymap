@@ -142,7 +142,7 @@
    &none      &none      &none      &none        &none    &none      &none      &none      &none        &none 
    &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHIFT   &none    &none      &none      &none      &none        &none        
    &none      &none      &none      &none        &none    &none      &none      &none      &none        &none 
-                  &kp ESC &kp BKSP &lt MOS ENTER                &mkp RCLICK &mkp LCLICK &mkp MCLICK
+                  &kp ESC &kp BKSP &lt MOS ENTER                &mkp RCLK &mkp LCLK &mkp MCLK
                         >;
                 };         
               
