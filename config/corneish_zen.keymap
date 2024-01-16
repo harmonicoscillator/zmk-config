@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
 
 / {
   chosen {
@@ -17,6 +18,10 @@
 #define NUM 5
 #define SYM 6
 #define FKY 7
+#define MOS 8
+#define LEFT_KEYS 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
+#define RIGHT_KEYS 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24
+#define THUMB_KEYS 30 31 32 33 34 35
 
 / {
     behaviors {
@@ -24,11 +29,12 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 22 23 27 28 25 26 27 28 29 30 31 32 33 34 35>;
+            hold-trigger-key-positions = <RIGHT_KEYS THUMB_KEYS>;
             hold-trigger-on-release;
         };
 
@@ -36,11 +42,12 @@
             compatible = "zmk,behavior-hold-tap";
             label = "RIGHT_HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
+            hold-trigger-key-positions = <LEFT_KEYS THUMB_KEYS>;
             hold-trigger-on-release;
         };        
     };
@@ -54,7 +61,7 @@
    &kp Q       &kp W       &kp E        &kp R         &kp T    &kp Y &kp U         &kp I          &kp O         &kp P          
    &lhm LGUI A &lhm LALT S &lhm LCTRL D &lhm LSHIFT F &kp G    &kp H &rhm RSHIFT J &rhm RCTRL K   &rhm RALT L   &rhm RGUI QUOT 
    &kp Z       &kp X       &kp C        &kp V         &kp B    &kp N &kp M         &kp CMMA       &kp DOT       &kp FSLH      
-                           &lt MED ESC &lt NAV BKSP &kp ENTER        &lt SYM TAB &lt NUM SPACE &lt FKY DEL
+                           &lt MED ESC &lt NAV BKSP &lt MOS ENTER        &lt SYM TAB &lt NUM SPACE &lt FKY DEL
                         >;
                 };
 
@@ -127,7 +134,17 @@
    &kp F10    &kp F1     &kp F2     &kp F3       &none       &none    &none       &none       &none     &none   
                         &kp ESC &kp BKSP &kp ENTER                 &kp TAB &kp SPACE &lt FKY DEL
                         >;
-                };                
+                };
+
+                mouse_layer {
+                        label = "MOS";
+                        bindings = <
+   &none      &none      &none      &none        &none    &none      &none      &none      &none        &none 
+   &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHIFT   &none    &none      &none      &none      &none        &none        
+   &none      &none      &none      &none        &none    &none      &none      &none      &none        &none 
+                  &kp ESC &kp BKSP &lt MOS ENTER                &kp RCLICK &kp LCLICK &kp MCLICK
+                        >;
+                };         
               
         };
 };
